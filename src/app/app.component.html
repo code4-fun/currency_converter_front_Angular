@@ -1,0 +1,84 @@
+<div class="container">
+  <h1>Конвертер валют</h1>
+
+  <div class="card">
+    <div class="form-control">
+      <select name="source-currency" (change)="sourceCurrencyHandler($event)">
+        <option disabled selected>У меня есть</option>
+        <option [value]="currency" *ngFor="let currency of currencies">{{ currency }}</option>
+      </select>
+    </div>
+    <div class="form-control">
+      <input type="number" placeholder="Сумма" [value]="sumToConvert"
+             (input)="sumInputHandler($event)" (keypress)="sumKeypressHandler()">
+    </div>
+    <div class="form-control">
+      <select name="target-currency" (change)="targetCurrencyHandler($event)">
+        <option disabled selected>Хочу приобрести</option>
+        <option *ngFor="let currency of currencies">{{ currency }}</option>
+      </select>
+    </div>
+    <div class="result-container">
+      <div class="form-control result-child">
+        <h1>{{ amount }}</h1>
+      </div>
+      <div class="form-control result-child">
+        <div class="table-cell" *ngIf="amount">
+          <h5>по курсу ЦБ установленному на {{ date }}</h5>
+        </div>
+      </div>
+    </div>
+    <button class="btn" (click)="showHistory()">Показать историю</button>
+    <button class="btn" (click)="showStat()">Показать статистику за неделю</button>
+    <button class="btn" (click)="resetHandler()">Reset</button>
+  </div>
+
+  <hr>
+
+  <div *ngIf="displayHistory; else noHistory">
+    <div class="card" *ngFor="let item of history">
+      <div class="history-container">
+        <div class="history-child">
+          {{ item.dateTime }}
+        </div>
+        <div class="history-child">
+          {{ item.curFrom }}
+        </div>
+        <div class="history-child">
+          {{ item.curTo }}
+        </div>
+        <div class="history-child">
+          {{ item.sumBeforeConversion }}
+        </div>
+        <div class="history-child">
+          {{ item.exRate }}
+        </div>
+        <div class="history-child">
+          {{ item.sumAfterConversion }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noHistory></ng-template>
+
+  <div *ngIf="displayStat; else noStat">
+    <div class="card" *ngFor="let item of stat">
+      <div class="stat-container">
+        <div class="stat-child">
+          {{ item.curFrom }}
+        </div>
+        <div class="stat-child">
+          {{ item.curTo }}
+        </div>
+        <div class="stat-child">
+          {{ item.sumBeforeConversion }}
+        </div>
+        <div class="stat-child">
+          {{ item.averageExRate }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noStat></ng-template>
+
+</div>

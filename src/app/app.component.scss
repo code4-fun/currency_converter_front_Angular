@@ -1,0 +1,43 @@
+.result-container {
+  display:flex;
+  justify-content:space-between;
+  height: 63.98px;
+}
+.result-child {
+  display: table;
+}
+.table-cell {
+  display: table-cell;
+  vertical-align: bottom;
+}
+.history-container {
+  display:flex;
+  & .history-child {
+    &:nth-child(2) {
+      text-align: center;
+    }
+    &:nth-child(3) {
+      text-align: center;
+    }
+    &:nth-child(4) {
+      text-align: center;
+    }
+    &:nth-child(5) {
+      text-align: center;
+    }
+    &:nth-child(6) {
+      text-align: right;
+    }
+  }
+}
+.history-child {
+  text-align: left;
+  flex-basis: 16.66%;
+}
+.stat-container {
+  display:flex;
+}
+.stat-child {
+  text-align: left;
+  flex-basis: 25%;
+}
