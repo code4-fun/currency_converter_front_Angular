@@ -49,7 +49,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.http.get<string[]>("https://conv-back.herokuapp.com").subscribe(response => {
+    this.http.get<string[]>("https://conv-back2.herokuapp.com").subscribe(response => {
       this.currencies = response.sort((a, b) => a.localeCompare(b))
     })
   }
@@ -95,7 +95,7 @@ export class AppComponent implements OnInit{
       .set("curfrom", this.currFrom)
       .set("curto", this.currTo)
       .set("amount", this.sumToConvert.toString());
-    this.http.get<ConversionResult>("https://conv-back.herokuapp.com/convert",
+    this.http.get<ConversionResult>("https://conv-back2.herokuapp.com/convert",
       {params: params})
       .subscribe(response => {
         this.date = response.dateTime
@@ -108,7 +108,7 @@ export class AppComponent implements OnInit{
     if(this.displayStat){
       this.displayStat = !this.displayStat
     }
-    this.http.get<History[]>("https://conv-back.herokuapp.com/history").subscribe(response => {
+    this.http.get<History[]>("https://conv-back2.herokuapp.com/history").subscribe(response => {
       this.history = response
     })
   }
@@ -118,7 +118,7 @@ export class AppComponent implements OnInit{
     if(this.displayHistory){
       this.displayHistory = !this.displayHistory
     }
-    this.http.get<Stat[]>("https://conv-back.herokuapp.com/stat").subscribe(response => {
+    this.http.get<Stat[]>("https://conv-back2.herokuapp.com/stat").subscribe(response => {
       this.stat = response
     })
   }
